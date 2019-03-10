@@ -3,6 +3,9 @@ import fecha from "fecha";
 import { Sparklines, SparklinesLine, SparklinesSpots } from "react-sparklines";
 
 const LIMIT = 20;
+const SPARKLINE_COLOR = "#1C8CDC";
+const SPARKLINE_HEIGHT = 20;
+const SPARKLINE_MARGIN = 5;
 
 export default class TickerTable extends Component {
   state = { tickers: {} };
@@ -16,19 +19,19 @@ export default class TickerTable extends Component {
     };
 
     //Update tickers
-    connection.onmessage = e => this.updateTicker(JSON.parse(e.data));
+    connection.onmessage = e => this.updateTickerData(JSON.parse(e.data));
   }
 
-  updateTicker(data) {
+  updateTickerData(data) {
     let { tickers } = this.state;
     data.forEach(([name, price]) => {
       let ticker = tickers[name];
-      tickers[name] = this.getTickerData(ticker, price);
+      tickers[name] = this.getFormattedTickerData(ticker, price);
     });
     this.setState({ tickers });
   }
 
-  getTickerData(ticker, price) {
+  getFormattedTickerData(ticker, price) {
     let history = [price];
     let diff = 0;
     if (ticker !== undefined) {
@@ -100,10 +103,10 @@ export default class TickerTable extends Component {
                     <Sparklines
                       data={ticker.history}
                       limit={LIMIT}
-                      height={20}
-                      margin={5}
+                      height={SPARKLINE_HEIGHT}
+                      margin={SPARKLINE_MARGIN}
                     >
-                      <SparklinesLine color="#1C8CDC" />
+                      <SparklinesLine color={SPARKLINE_COLOR} />
                       <SparklinesSpots />
                     </Sparklines>
                   </div>
