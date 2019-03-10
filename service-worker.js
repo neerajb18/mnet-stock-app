@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/neerajb18.github.io/precache-manifest.5eb16d590ad9f2d8e58c24e4a3021654.js"
+  "/mnet-stock-app/precache-manifest.475e44402e3cef23737d318e3deb8a7f.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/neerajb18.github.io/index.html", {
+workbox.routing.registerNavigationRoute("/mnet-stock-app/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
